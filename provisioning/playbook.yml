@@ -14,11 +14,11 @@
 #   roles:
 #     - maxscale
 #
-- hosts: master
-  become: yes
-  user: vagrant
-  roles:
-    - master
+# - hosts: master
+#   become: yes
+#   user: vagrant
+#   roles:
+#     - master
 #
 # - hosts: slave1,slave2
 #   become: yes
@@ -27,18 +27,6 @@
 #     - slave
 
 # master-slave repliction setup
-- hosts: master
-  become: yes
-  user: vagrant
-  tasks:
-    # - name: get master
-    #   mysql_replication:
-    #     mode: getmaster
-    #   register: master_status
-    #
-    # - name: master_status
-    #   debug: var=master_status
-
 - hosts: slave1,slave2
   become: yes
   user: vagrant
@@ -52,7 +40,7 @@
         mode: resetslave
 
     - name: select @@global.gtid_current_pos
-      command: mysql -h 192.168.18.20 --user=maxuser --password=maxpwd -e "select @@global.gtid_current_pos;"
+      command: mysql -h 192.168.18.20 -u repl --password=replpwd -e "select @@global.gtid_current_pos;"
       register: current_pos
 
     - name: global.gtid_current_pos
@@ -72,4 +60,16 @@
       mysql_replication:
         mode: getslave
       register: slave_status
-    - debug: var=slave_status
+    - debug: var=slave_status.Gtid_IO_Pos
+
+- hosts: master
+  become: yes
+  user: vagrant
+  tasks:
+    - name: get master
+      mysql_replication:
+        mode: getmaster
+      register: master_status
+
+    - name: master_status
+      debug: var=master_status

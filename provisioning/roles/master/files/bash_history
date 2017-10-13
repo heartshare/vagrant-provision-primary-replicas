@@ -1,6 +1,5 @@
 cd /etc/my.cnf.d/
-vi galera.cnf
-vi /etc/my.cnf.d/galera.cnf
+vi /etc/my.cnf.d/server.cnf
 systemctl status mariadb
 systemctl stop mariadb
 systemctl start mariadb
