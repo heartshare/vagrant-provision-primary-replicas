@@ -3,7 +3,7 @@
 - name: copy configuration for slave
   template: src=server.cnf dest=/etc/my.cnf.d/
 
-- name: enable/start MariaDB server
+- name: enable/start MariaDB Server
   systemd: name=mariadb state=started enabled=True
 
 - name: install MYSQL-python
