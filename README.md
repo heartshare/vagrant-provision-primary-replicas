@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* Vagrant - Tool for working with VirtualBox images. [Download](https://www.vagrantup.com/downloads.html)
+* [Vagrant](https://www.vagrantup.com/downloads.html)
 * [VMware Workstation 12 Pro](https://www.vmware.com/products/workstation.html)
 * [Ansible](https://www.ansible.com/)
 
