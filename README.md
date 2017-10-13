@@ -1,4 +1,4 @@
-# Provisioning MariaDB Glaera cluster and MaxScale / CentOS 7 with Vagrant / Ansible
+# Provisioning MariaDB Master-Slave cluster and MaxScale / CentOS 7 with Vagrant / Ansible
 
 ## Requirements
 
