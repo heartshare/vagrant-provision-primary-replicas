@@ -20,15 +20,19 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :vmware_workstation do |v|
-    v.vmx['memsize'] = "1024"
+    v.vmx['memsize'] = "2048"
     v.vmx['numvcpus'] = 1
   end
 
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "provisioning/playbook.yml"
+    ansible.playbook = "provisioning/provision-ha.yml"
     ansible.groups = {
       "mxs" => ["maxscale"],
       "repl" => ["master","slave1","slave2"]
     }
+  end
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.playbook = "provisioning/setup-replication.yml"
+    ansible.groups = {"repl" => ["slave1","slave2"]}
   end
 end

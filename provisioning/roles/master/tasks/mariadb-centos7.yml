@@ -10,7 +10,7 @@
   stat: path=/vagrant/mariadb-10.2.9-rhel-7-x86_64-rpms.tar
   register: rpmtar
 
-- name: tar xf RPM tar ball and install
+- name: extract RPM tar ball and install
   shell: |
     tar xf /vagrant/mariadb-10.2.9-rhel-7-x86_64-rpms.tar
     cd /root/mariadb-10.2.9-rhel-7-x86_64-rpms
