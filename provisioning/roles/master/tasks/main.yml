@@ -6,36 +6,17 @@
 - name: enable/start MariaDB Server(Master)
   systemd: name=mariadb state=started enabled=True
 
-
 - name: install MYSQL-python
   yum: name=MySQL-python state=present
 
 - name: create replication user on master
   mysql_user: name=repl host=% password=replpwd priv="*.*:REPLICATION SLAVE" state=present
 
-# - name: create replication client user @ 192.168.70.21
-#   mysql_user: name=repl host=192.168.70.21 password=replpwd priv=*.*:ALL state=present
-#
-# - name: create replication client user @ 192.168.70.22
-#   mysql_user: name=repl host=192.168.70.22 password=replpwd priv=*.*:ALL state=present
-
 - name: create maxuser(super) user
   mysql_user: name=maxuser host=% password=maxpwd priv=*.*:ALL state=present
 
 - name: create maxadmin user
   mysql_user: name=maxadmin host=% password=maxpwd priv="*.*:SELECT,SHOW DATABASES" state=present
-
-# - name: create maxadmin user with REPLICATION CLIENT
-#   mysql_user: name=maxadmin host="192.168.70.20" password=maxpwd priv="*.*:REPLICATION CLIENT" state=present
-
-# Get master binlog file name and binlog position
-- name: get master
-  mysql_replication:
-    mode: getmaster
-  register: result
-
-- name: master status
-  debug: var=result
 
 - name: copy .bash_history
   copy: src=bash_history dest=/root/.bash_history
