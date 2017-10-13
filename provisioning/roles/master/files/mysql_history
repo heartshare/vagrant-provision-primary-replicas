@@ -1,0 +1,5 @@
+SHOW VARIABLES LIKE 'server_id';
+mysqldump --all-databases --master-data=2 --single-transaction --routines > /tmp/dump.sql
+SELECT BINLOG_GTID_POS("mariadb-bin.000001", xxx );
+select @@global.gtid_current_pos;
+select @@global.gtid_strict_mode;

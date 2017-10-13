@@ -1,0 +1,48 @@
+- include: mariadb-centos7.yml
+
+- name: copy configuration for slave
+  template: src=server.cnf dest=/etc/my.cnf.d/
+
+- name: enable/start MariaDB server
+  systemd: name=mariadb state=started enabled=True
+
+- name: install MYSQL-python
+  yum: name=MySQL-python state=present
+
+- name: stop slave
+  mysql_replication:
+    mode: stopslave
+
+# Get master binlog file name and binlog position
+- name: get master
+  mysql_replication:
+    mode: getmaster
+
+# Change master to master server 192.0.2.1 and use binary log 'mysql-bin.000009' with position 4578
+- name: change master
+  mysql_replication:
+    mode: changemaster
+    master_host:     192.168.18.20
+    master_log_file: mariadb-bin.000001
+    master_log_pos:  4578
+
+# Check slave status using port 3308
+- name: get slave
+  mysql_replication:
+    mode: getslave
+    login_host: localhost
+    login_port: 3308
+
+
+- name: create maxuser(super) user
+  mysql_user: name=maxuser host=% password=maxpwd priv=*.*:ALL state=present
+
+- name: create maxadmin user
+  mysql_user: name=maxadmin host="%" password=maxpwd priv="*.*:SELECT,SHOW DATABASES" state=present
+
+
+- name: copy .bash_history
+  copy: src=bash_history dest=/root/.bash_history
+
+- name: copy .mysql_history
+  copy: src=mysql_history dest=/root/.mysql_history
