@@ -1,6 +1,14 @@
 [maxscale]
 threads=4
 
+[Replication Monitor]
+type=monitor
+module=mysqlmon
+servers=master,slave1,slave2
+user=maxuser
+passwd=maxpwd
+#monitor_interval=1000
+
 [Read Connection Router]
 type=service
 router=readconnroute

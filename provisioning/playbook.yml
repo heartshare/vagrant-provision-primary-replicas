@@ -1,27 +1,75 @@
-- hosts: all
-  vars:
-    locale: en_US.UTF-8
-    keymap: jp106
-    zone:   Asia/Tokyo
-  become: yes
-  user: vagrant
-  roles:
-    - common
-
-- hosts: maxscale
-  become: yes
-  user: vagrant
-  roles:
-    - maxscale
-
+# - hosts: all
+#   vars:
+#     locale: en_US.UTF-8
+#     keymap: jp106
+#     zone:   Asia/Tokyo
+#   become: yes
+#   user: vagrant
+#   roles:
+#     - common
+#
+# - hosts: maxscale
+#   become: yes
+#   user: vagrant
+#   roles:
+#     - maxscale
+#
 - hosts: master
   become: yes
   user: vagrant
   roles:
     - master
+#
+# - hosts: slave1,slave2
+#   become: yes
+#   user: vagrant
+#   roles:
+#     - slave
+
+# master-slave repliction setup
+- hosts: master
+  become: yes
+  user: vagrant
+  tasks:
+    # - name: get master
+    #   mysql_replication:
+    #     mode: getmaster
+    #   register: master_status
+    #
+    # - name: master_status
+    #   debug: var=master_status
 
 - hosts: slave1,slave2
   become: yes
   user: vagrant
-  roles:
-    - slave
+  tasks:
+    - name: stop slave
+      mysql_replication:
+        mode: stopslave
+
+    - name: reset slave
+      mysql_replication:
+        mode: resetslave
+
+    - name: select @@global.gtid_current_pos
+      command: mysql -h 192.168.18.20 --user=maxuser --password=maxpwd -e "select @@global.gtid_current_pos;"
+      register: current_pos
+
+    - name: global.gtid_current_pos
+      debug: var=current_pos.stdout_lines[1]
+
+    - name: set global GTID position
+      command: mysql -e "set global gtid_slave_pos = '{{ current_pos.stdout_lines[1] }}';"
+
+    - name: change master
+      command: mysql -e "CHANGE MASTER TO MASTER_HOST='192.168.18.20', MASTER_USE_GTID=slave_pos, MASTER_USER='repl', MASTER_PASSWORD='replpwd';"
+
+    - name: start slave
+      mysql_replication:
+        mode: startslave
+
+    - name: get slave
+      mysql_replication:
+        mode: getslave
+      register: slave_status
+    - debug: var=slave_status
