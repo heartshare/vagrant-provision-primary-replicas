@@ -1,0 +1,9 @@
+# master
+[mysqld]
+server-id        = {{ server_id }}
+log-bin          = mariadb-bin
+binlog-format    = ROW
+bind-address     = 0.0.0.0
+gtid_strict_mode = 1
+log-slave-updates
+log-error = /var/log/mariadb-error.log

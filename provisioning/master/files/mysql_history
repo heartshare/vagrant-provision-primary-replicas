@@ -1,0 +1,10 @@
+SHOW VARIABLES LIKE 'server_id';
+select @@global.gtid_current_pos;
+select @@global.gtid_slave_pos;
+select @@global.gtid_strict_mode;
+show master status;
+use test;
+create table repl1 (id int primary key);
+select * from test.repl1;
+insert into repl1 value(1);
+select user, host, password from mysql.user;

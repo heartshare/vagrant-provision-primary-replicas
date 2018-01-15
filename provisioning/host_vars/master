@@ -1,0 +1,3 @@
+server_id: 10
+is_master: true
+is_maxscale: false

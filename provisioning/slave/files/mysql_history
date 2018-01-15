@@ -1,0 +1,11 @@
+stop slave;
+reset slave;
+start slave;
+show slave status \G
+use test;
+show tables;
+select * from test.repl1;
+select @@global.gtid_slave_pos;
+select @@global.gtid_current_pos;
+select @@global.gtid_strict_mode;
+select user, host, password from mysql.user;
