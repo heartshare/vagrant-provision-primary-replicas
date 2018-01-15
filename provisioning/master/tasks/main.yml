@@ -23,7 +23,7 @@
 - name: copy .mysql_history
   copy: src=mysql_history dest=/root/.mysql_history
 
-- name: clone MySQL test_db repository
-  git:
-    repo: 'https://github.com/datacharmer/test_db.git'
-    dest: /root/test
+# - name: clone MySQL test_db repository
+#   git:
+#     repo: 'https://github.com/datacharmer/test_db.git'
+#     dest: /root/test

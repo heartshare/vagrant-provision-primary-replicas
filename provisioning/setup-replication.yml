@@ -10,7 +10,7 @@
       mysql_replication: mode=resetslave
 
     - name: select @@global.gtid_current_pos
-      command: mysql -h 192.168.80.110 -u repl --password=replpwd -e "select @@global.gtid_current_pos;"
+      command: mysql -h 192.168.80.200 -u repl --password=replpwd -e "select @@global.gtid_current_pos;"
       register: current_pos
     - debug: var=current_pos.stdout_lines[1]
 
@@ -18,7 +18,7 @@
       command: mysql -e "set global gtid_slave_pos = '{{ current_pos.stdout_lines[1] }}';"
 
     - name: change master
-      command: mysql -e "CHANGE MASTER TO MASTER_HOST='192.168.80.110', MASTER_USE_GTID=slave_pos, MASTER_USER='repl', MASTER_PASSWORD='replpwd';"
+      command: mysql -e "CHANGE MASTER TO MASTER_HOST='192.168.80.200', MASTER_USE_GTID=slave_pos, MASTER_USER='repl', MASTER_PASSWORD='replpwd';"
 
     - name: start slave
       mysql_replication: mode=startslave

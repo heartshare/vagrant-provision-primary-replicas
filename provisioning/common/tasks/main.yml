@@ -1,4 +1,4 @@
-- include: mariadb-centos7.yml
+- include_tasks: mariadb-centos7.yml
   when: not is_maxscale
 
 - name: set timezone {{ zone }}
@@ -11,14 +11,13 @@
   register: set_locale
   changed_when: false
 
-- name: install wget/git/libselinux-python
+- name: install wget/git/libselinux-python/epel
   yum: name={{ item }} state=latest
   with_items:
     - wget
     - git
     - libselinux-python
     - epel-release
-    - unzip
 
 - name: disable SELinux
   selinux: state=disabled
