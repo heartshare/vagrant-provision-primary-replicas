@@ -10,12 +10,12 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "mxs" do |node|
     node.vm.hostname = "mxs"
-    node.vm.network :private_network, ip:"192.168.1.10"
+    node.vm.network :private_network, ip:"192.168.100.10"
   end
   1.upto(3) do |i|
     config.vm.define "node#{i}" do |node|
       node.vm.hostname = "node#{i}"
-      node.vm.network :private_network, ip:"192.168.1.1#{i}"
+      node.vm.network :private_network, ip:"192.168.100.1#{i}"
     end
   end
   config.vm.provision "ansible_local" do |ansible|

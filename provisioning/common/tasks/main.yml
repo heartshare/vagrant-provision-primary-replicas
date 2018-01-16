@@ -1,4 +1,4 @@
-- include_tasks: mariadb-centos7.yml
+- import_tasks: mariadb-centos7.yml
   when: not is_maxscale
 
 - name: set timezone {{ zone }}

@@ -9,7 +9,7 @@
   roles:
     - common
 
-- hosts: maxscale
+- hosts: mxs
   become: yes
   user: vagrant
   roles:

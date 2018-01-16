@@ -4,7 +4,7 @@ threads=4
 [MariaDB-Monitor]
 type=monitor
 module=mysqlmon
-servers=node1,node2,node3
+servers = node1,node2,node3
 user=maxuser
 passwd=maxpwd
 monitor_interval=1000
@@ -26,7 +26,7 @@ backend_connect_timeout=1
 [Read Connection Router]
 type=service
 router=readconnroute
-servers=master,slave1,slave2
+servers = node1,node2,node3
 user=maxadmin
 passwd=maxpwd
 router_options=slave
@@ -34,7 +34,7 @@ router_options=slave
 [Splitter Service]
 type=service
 router=readwritesplit
-servers=master,slave1,slave2
+servers = node1,node2,node3
 user=maxadmin
 passwd=maxpwd
 max_slave_connections=100%
@@ -81,18 +81,18 @@ port=6603
 ###############################################################################
 [node1]
 type=server
-address=192.168.1.11
+address=192.168.100.11
 port=3306
 protocol=MySQLBackend
 
 [node2]
 type=server
-address=192.168.1.12
+address=192.168.100.12
 port=3306
 protocol=MySQLBackend
 
 [node3]
 type=server
-address=192.168.1.13
+address=192.168.100.13
 port=3306
 protocol=MySQLBackend
