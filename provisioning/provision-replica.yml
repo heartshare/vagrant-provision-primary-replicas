@@ -15,13 +15,13 @@
   roles:
     - maxscale
 
-- hosts: master
+- hosts: node1
   become: yes
   user: vagrant
   roles:
     - master
 
-- hosts: slave1,slave2
+- hosts: node2,node3
   become: yes
   user: vagrant
   roles:
