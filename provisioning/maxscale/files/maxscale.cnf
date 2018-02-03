@@ -3,7 +3,8 @@ threads=4
 
 [MariaDB-Monitor]
 type=monitor
-module=mysqlmon
+#      !!!!!!!
+module=mariadbmon
 servers = node1,node2,node3
 user=maxuser
 passwd=maxpwd
@@ -47,13 +48,13 @@ router=debugcli
 [Read Connection Listener]
 type=listener
 service=Read Connection Router
-protocol=MySQLClient
+protocol=MariaDBClient
 port=4008
 
 [Splitter Listener]
 type=listener
 service=Splitter Service
-protocol=MySQLClient
+protocol=MariaDBClient
 port=4006
 
 [Debug Listener]
@@ -83,16 +84,16 @@ port=6603
 type=server
 address=192.168.100.11
 port=3306
-protocol=MySQLBackend
+protocol=MariaDBBackend
 
 [node2]
 type=server
 address=192.168.100.12
 port=3306
-protocol=MySQLBackend
+protocol=MariaDBBackend
 
 [node3]
 type=server
 address=192.168.100.13
 port=3306
-protocol=MySQLBackend
+protocol=MariaDBBackend

@@ -22,4 +22,4 @@
 - name: copy .mysql_history
   copy: src=mysql_history dest=/root/.mysql_history
 
-- include: setup-slave.yml
+- import_tasks: setup-slave.yml
