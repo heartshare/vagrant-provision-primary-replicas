@@ -3,34 +3,20 @@ threads=4
 
 [MariaDB-Monitor]
 type=monitor
-#      !!!!!!!
 module=mariadbmon
-servers = node1,node2,node3
+servers=node1,node2,node3
 user=maxuser
 passwd=maxpwd
-monitor_interval=1000
-detect_standalone_master=true
-failcount=1
-allow_cluster_recovery=true
 
 # since 2.2.1 beta
 auto_failover=true
 auto_rejoin=true
-
-#failover=true
-#failover_recovery=true
-
 replication_user=repl
 replication_password=replpwd
-backend_connect_timeout=1
+detect_standalone_master=true
+failcount=1
+allow_cluster_recovery=true
 
-[Read Connection Router]
-type=service
-router=readconnroute
-servers = node1,node2,node3
-user=maxadmin
-passwd=maxpwd
-router_options=slave
 
 [Splitter Service]
 type=service
@@ -44,12 +30,6 @@ router_options=slave_selection_criteria=LEAST_CURRENT_OPERATIONS
 [Debug Interface]
 type=service
 router=debugcli
-
-[Read Connection Listener]
-type=listener
-service=Read Connection Router
-protocol=MariaDBClient
-port=4008
 
 [Splitter Listener]
 type=listener
