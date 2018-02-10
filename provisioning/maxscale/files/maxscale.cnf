@@ -1,5 +1,5 @@
 [maxscale]
-threads=4
+threads=2
 
 [MariaDB-Monitor]
 type=monitor
@@ -27,15 +27,15 @@ passwd=maxpwd
 max_slave_connections=100%
 router_options=slave_selection_criteria=LEAST_CURRENT_OPERATIONS
 
-[Debug Interface]
-type=service
-router=debugcli
-
 [Splitter Listener]
 type=listener
 service=Splitter Service
 protocol=MariaDBClient
 port=4006
+
+[Debug Interface]
+type=service
+router=debugcli
 
 [Debug Listener]
 type=listener
