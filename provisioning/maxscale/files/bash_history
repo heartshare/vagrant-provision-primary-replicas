@@ -1,2 +1,3 @@
-watch -n 2 maxadmin list servers
-maxadmin list servers
+watch -n 1 maxctrl list servers
+maxctrl list servers
+maxctrl call command mariadbmon failover MariaDB-Monitor
