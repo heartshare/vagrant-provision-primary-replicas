@@ -9,3 +9,6 @@ select @@global.gtid_slave_pos;
 select @@global.gtid_current_pos;
 select @@global.gtid_strict_mode;
 select user, host, password from mysql.user;
+show grants for repl@'%';
+show grants for maxuser@'%';
+show grants for maxadmin@'%';
