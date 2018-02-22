@@ -8,7 +8,7 @@ servers=node1,node2,node3
 user=maxuser
 passwd=maxpwd
 
-# since 2.2.1 beta
+# for 2.2
 auto_failover=true
 auto_rejoin=true
 replication_user=repl
@@ -21,7 +21,7 @@ allow_cluster_recovery=true
 [Splitter Service]
 type=service
 router=readwritesplit
-servers = node1,node2,node3
+servers=node1,node2,node3
 user=maxadmin
 passwd=maxpwd
 max_slave_connections=100%

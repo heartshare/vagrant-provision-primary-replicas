@@ -10,17 +10,17 @@
     gpgcheck:    1
 
 - name: MariaDB 10.2 RPM tar ball exists ?
-  stat: path=/vagrant/mariadb-10.2.13-rhel-7-x86_64-rpms.tar
+  stat: path=/vagrant/mariadb-{{ mdb_version }}-rhel-7-x86_64-rpms.tar
   register: rpmtar
 
 - name: extract RPM tar ball and install
   shell: |
-    tar xf /vagrant/mariadb-10.2.13-rhel-7-x86_64-rpms.tar
-    cd /root/mariadb-10.2.13-rhel-7-x86_64-rpms
-    yum -y localinstall MariaDB-10.2.13-centos73-x86_64-server.rpm \
-                        MariaDB-10.2.13-centos73-x86_64-client.rpm \
-                        MariaDB-10.2.13-centos73-x86_64-common.rpm \
-                        MariaDB-10.2.13-centos73-x86_64-compat.rpm
+    tar xf /vagrant/mariadb-{{ mdb_version }}-rhel-7-x86_64-rpms.tar
+    cd /root/mariadb-{{ mdb_version }}-rhel-7-x86_64-rpms
+    yum -y localinstall MariaDB-{{ mdb_version }}-centos73-x86_64-server.rpm \
+                        MariaDB-{{ mdb_version }}-centos73-x86_64-client.rpm \
+                        MariaDB-{{ mdb_version }}-centos73-x86_64-common.rpm \
+                        MariaDB-{{ mdb_version }}-centos73-x86_64-compat.rpm
   args:
     chdir: /root
   when: rpmtar.stat.exists

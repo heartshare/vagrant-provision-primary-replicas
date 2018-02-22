@@ -1,3 +1,4 @@
+is_db_node: true
 server_id: 11
 is_master: true
-is_maxscale: false
+mdb_version: 10.2.13

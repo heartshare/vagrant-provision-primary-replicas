@@ -7,8 +7,12 @@
 - name: install MYSQL-python
   yum: name=MySQL-python state=present
 
+# - name: create replication user on master
+#   mysql_user: name=repl host=% password=replpwd priv="*.*:REPLICATION SLAVE" state=present
+#   when: is_master
+
 - name: create replication user on master
-  mysql_user: name=repl host=% password=replpwd priv="*.*:REPLICATION SLAVE" state=present
+  mysql_user: name=repl host=% password=replpwd priv="*.*:REPLICATION CLIENT" state=present
   when: is_master
 
 - name: create maxuser(super) user

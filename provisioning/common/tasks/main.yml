@@ -1,6 +1,3 @@
-- import_tasks: mariadb-centos7.yml
-  when: not is_maxscale
-
 - name: set timezone {{ zone }}
   shell: timedatectl set-timezone {{ zone }}
   register: set_timezone
@@ -71,3 +68,6 @@
 
 - name: copy /etc/hosts
   copy: src=hosts dest=/etc/hosts
+
+- import_tasks: mariadb-centos7.yml
+  when: is_db_node

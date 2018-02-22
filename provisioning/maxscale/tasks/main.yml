@@ -1,39 +1,20 @@
 - name: MaxScale 2.2 rpm exists ?
-  stat: path=/vagrant/maxscale-2.2.2-1.rhel.7.x86_64.rpm
+  stat: path=/vagrant/maxscale-{{ version }}-1.rhel.7.x86_64.rpm
   register: maxscalerpm
 
 - name: extract RPM tar ball and install
   shell: |
-    cp /vagrant/maxscale-2.2.2-1.rhel.7.x86_64.rpm .
-    yum -y localinstall maxscale-2.2.2-1.rhel.7.x86_64.rpm
+    cp /vagrant/maxscale-{{ version }}-1.rhel.7.x86_64.rpm .
+    yum -y localinstall maxscale-{{ version }}-1.rhel.7.x86_64.rpm
   args:
     chdir: /root
   when: maxscalerpm.stat.exists
 
-# - name: clone MaxScale 2.2.2 beta Repository
-#   git:
-#     repo: https://github.com/mariadb-corporation/MaxScale.git
-#     version: maxscale-2.2.2-tt4
-#     dest: /root/MaxScale
-#
-# - name: build MaxScale 2.2.2 beta
-#   shell: |
-#     cd /root/MaxScale/BUILD
-#     ./install_build_deps.sh
-#     cd ..
-#     cmake . && make && make install
-#     ./postinst
-
 - name: add maxscale group
-  group:
-    name: maxscale
-    state: present
+  group: name=maxscale state=present
 
 - name: add maxscale user
-  user:
-    name: maxscale
-    group: maxscale
-    shell: /sbin/nologin
+  user: name=maxscale group=maxscale shell=/sbin/nologin
 
 - name: copy MaxScale configuration
   copy: src=maxscale.cnf dest=/etc/maxscale.cnf
