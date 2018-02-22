@@ -6,3 +6,5 @@ systemctl start mariadb
 systemctl restart mariadb
 pushd /var/lib/mysql/
 tail -f /var/log/messages
+chown -R mysql:mysql .
+mysql_install_db
