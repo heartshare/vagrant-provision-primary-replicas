@@ -1,14 +1,32 @@
+- name: install MaxScale latest repository
+  yum_repository:
+    name:        maxscale
+    description: MaxScale
+    baseurl:     https://downloads.mariadb.com/MaxScale/latest/rhel/$releasever/$basearch
+    gpgkey:      https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+    gpgcheck:    1
+
+- name: copy MaxScale configuration
+  copy: src=maxscale.cnf dest=/etc/maxscale.cnf
+
+- name: copy ~/.bash_history
+  copy: src=bash_history dest=/root/.bash_history
+
 - name: MaxScale 2.2 rpm exists ?
   stat: path=/vagrant/maxscale-{{ version }}-1.rhel.7.x86_64.rpm
   register: maxscalerpm
 
-- name: extract RPM tar ball and install
+- name: copy RPM and install
   shell: |
-    cp /vagrant/maxscale-{{ version }}-1.rhel.7.x86_64.rpm .
-    yum -y localinstall maxscale-{{ version }}-1.rhel.7.x86_64.rpm
+    cp /vagrant/maxscale-{{ version }}-*.rpm .
+    yum -y localinstall maxscale-{{ version }}-*.rpm
   args:
     chdir: /root
   when: maxscalerpm.stat.exists
+
+- name: install MaxScale from MariaDB repository
+  yum:  name=maxscale state=latest
+  when: not maxscalerpm.stat.exists
 
 - name: add maxscale group
   group: name=maxscale state=present
@@ -16,11 +34,5 @@
 - name: add maxscale user
   user: name=maxscale group=maxscale shell=/sbin/nologin
 
-- name: copy MaxScale configuration
-  copy: src=maxscale.cnf dest=/etc/maxscale.cnf
-
 - name: enable/start MaxScale
   systemd: name=maxscale state=started enabled=True
-
-- name: copy ~/.bash_history
-  copy: src=bash_history dest=/root/.bash_history

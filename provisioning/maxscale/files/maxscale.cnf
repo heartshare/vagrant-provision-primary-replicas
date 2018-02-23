@@ -62,18 +62,18 @@ port=6603
 ###############################################################################
 [node1]
 type=server
-address=192.168.100.11
+address=192.168.2.11
 port=3306
 protocol=MariaDBBackend
 
 [node2]
 type=server
-address=192.168.100.12
+address=192.168.2.12
 port=3306
 protocol=MariaDBBackend
 
 [node3]
 type=server
-address=192.168.100.13
+address=192.168.2.13
 port=3306
 protocol=MariaDBBackend

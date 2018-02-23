@@ -1,5 +1,5 @@
 is_db_node: true
 server_id: 12
 is_master: false
-master_initial: 192.168.100.11
+master_initial: 192.168.2.11
 mdb_version: 10.2.12
