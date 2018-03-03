@@ -21,7 +21,7 @@
   roles:
     - master
 
-- hosts: node2,node3
+- hosts: node2
   become: yes
   user: vagrant
   roles:

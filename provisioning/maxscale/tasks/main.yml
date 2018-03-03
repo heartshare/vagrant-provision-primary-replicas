@@ -2,8 +2,8 @@
   yum_repository:
     name:        maxscale
     description: MaxScale
-    baseurl:     https://downloads.mariadb.com/MaxScale/latest/rhel/$releasever/$basearch
-    gpgkey:      https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+    baseurl:     https://downloads.mariadb.com/MaxScale/2.2/rhel/$releasever/$basearch
+    gpgkey:      file:///etc/pki/rpm-gpg/MariaDB-MaxScale-GPG-KEY
     gpgcheck:    1
 
 - name: copy MaxScale configuration
