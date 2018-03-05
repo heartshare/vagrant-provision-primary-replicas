@@ -11,11 +11,11 @@ passwd=maxpwd
 # for 2.2
 auto_failover=true
 auto_rejoin=true
-replication_user=repl
-replication_password=replpwd
-detect_standalone_master=true
-failcount=1
-allow_cluster_recovery=true
+#replication_user=repl
+#replication_password=replpwd
+#detect_standalone_master=true
+#failcount=1
+#allow_cluster_recovery=true
 
 
 [Splitter Service]
