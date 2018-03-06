@@ -1,5 +1,5 @@
 [maxscale]
-threads=2
+threads=auto
 
 [MariaDB-Monitor]
 type=monitor
