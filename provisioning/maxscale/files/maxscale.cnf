@@ -4,11 +4,11 @@ threads=auto
 [MariaDB-Monitor]
 type=monitor
 module=mariadbmon
-servers=node1,node2,node3
+servers=node101,node102,node103
 user=maxuser
 passwd=maxpwd
 
-# for 2.2
+#-for-2.2
 auto_failover=true
 auto_rejoin=true
 #replication_user=repl
@@ -18,28 +18,28 @@ auto_rejoin=true
 #allow_cluster_recovery=true
 
 
-[Splitter Service]
+[Splitter-Service]
 type=service
 router=readwritesplit
-servers=node1,node2,node3
+servers=node101,node102,node103
 user=maxadmin
 passwd=maxpwd
 max_slave_connections=100%
 router_options=slave_selection_criteria=LEAST_CURRENT_OPERATIONS
 
-[Splitter Listener]
+[Splitter-Listener]
 type=listener
-service=Splitter Service
+service=Splitter-Service
 protocol=MariaDBClient
 port=4006
 
-[Debug Interface]
+[Debug-Interface]
 type=service
 router=debugcli
 
-[Debug Listener]
+[Debug-Listener]
 type=listener
-service=Debug Interface
+service=Debug-Interface
 protocol=telnetd
 port=4442
 
@@ -47,32 +47,32 @@ port=4442
 type=service
 router=cli
 
-[MaxAdmin Unix Listener]
+[MaxAdmin-Unix-Listener]
 type=listener
 service=MaxAdmin
 protocol=maxscaled
 socket=default
 
-[MaxAdmin Inet Listener]
+[MaxAdmin-Inet-Listener]
 type=listener
 service=MaxAdmin
 protocol=maxscaled
 address=localhost
 port=6603
-###############################################################################
-[node1]
+#----------------------
+[node101]
 type=server
 address=192.168.2.101
 port=3306
 protocol=MariaDBBackend
 
-[node2]
+[node102]
 type=server
 address=192.168.2.102
 port=3306
 protocol=MariaDBBackend
 
-[node3]
+[node103]
 type=server
 address=192.168.2.103
 port=3306
