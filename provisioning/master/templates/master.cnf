@@ -5,5 +5,5 @@ log-bin          = mariadb-bin
 binlog-format    = ROW
 gtid_strict_mode = 1
 bind-address     = 0.0.0.0
-log_error        = mariadb-log
+log_error
 log-slave-updates
