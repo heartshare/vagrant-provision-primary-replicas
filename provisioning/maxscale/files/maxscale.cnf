@@ -6,7 +6,7 @@ type=monitor
 module=mariadbmon
 servers=node101,node102,node103
 user=maxuser
-passwd=maxpwd
+password=maxpwd
 
 #-for-2.2
 auto_failover=true
@@ -23,7 +23,7 @@ type=service
 router=readwritesplit
 servers=node101,node102,node103
 user=maxadmin
-passwd=maxpwd
+password=maxpwd
 max_slave_connections=100%
 router_options=slave_selection_criteria=LEAST_CURRENT_OPERATIONS
 
