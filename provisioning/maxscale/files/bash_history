@@ -3,3 +3,5 @@ maxctrl list servers
 maxctrl call command mariadbmon failover MariaDB-Monitor
 maxctrl call command mariadbmon switchover MariaDB-Monitor server1 server2
 systemctl restart maxscale
+systemctl restart lsyncd
+cd /var/lib/MaxScale

@@ -1,4 +1,4 @@
-# Provisioning MariaDB Master-Slave replication + MaxScale 2.2 / CentOS 7 with Vagrant / Ansible
+# Provisioning MariaDB Master-Slave replication + MaxScale 2.2 HA / CentOS 7 with Vagrant / Ansible
 
 ## Requirements
 
@@ -21,3 +21,4 @@
 ## Reference
 * https://www.vagrantup.com/docs/provisioning/ansible_intro.html
 * https://mariadb.com/kb/en/mariadb-enterprise/mariadb-maxscale-22-automatic-failover-with-mariadb-monitor/
+* https://mariadb.com/kb/en/mariadb-enterprise/mariadb-maxscale-22-mariadb-maxscale-ha-with-lsyncd/

@@ -37,5 +37,14 @@
 - name: enable/start MaxScale
   systemd: name=maxscale state=started enabled=True
 
-- name: install lyncd
-  yum:  name=lyncd state=latest
+- name: install lsyncd
+  yum:  name=lsyncd state=latest
+
+- name: copy lsyncd configuration
+  template: src=lsyncd.conf dest=/etc/lsyncd.conf
+
+- name: enable/start lsyncd
+  systemd: name=lsyncd state=started enabled=True
+
+- name: enable/start rsyncd
+  systemd: name=rsyncd state=started enabled=True
