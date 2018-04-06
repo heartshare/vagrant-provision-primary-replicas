@@ -36,3 +36,6 @@
 
 - name: enable/start MaxScale
   systemd: name=maxscale state=started enabled=True
+
+- name: install lyncd
+  yum:  name=lyncd state=latest

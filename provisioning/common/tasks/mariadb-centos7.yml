@@ -17,7 +17,7 @@
   shell: |
     tar xf /vagrant/mariadb-{{ mdb_version }}-rhel-7-x86_64-rpms.tar
     cd /root/mariadb-{{ mdb_version }}-rhel-7-x86_64-rpms
-    yum -y localinstall MariaDB-{{ mdb_version }}-*-server.rpm \
+    yum -y localinstall MariaDB-{{ mdb_version }}-*-x86_64-server.rpm \
                         MariaDB-{{ mdb_version }}-*-client.rpm \
                         MariaDB-{{ mdb_version }}-*-common.rpm \
                         MariaDB-{{ mdb_version }}-*-compat.rpm

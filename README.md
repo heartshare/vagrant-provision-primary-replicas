@@ -12,7 +12,7 @@
 
 ## SSH login to the VM
 
-* vagrant ssh [mxs|node1|node2|node3]
+* vagrant ssh [mxs1|mxs2|server1|server2|server3]
 
 ## rsync Vagrant files and folders between local and target hosts
 
@@ -20,4 +20,4 @@
 
 ## Reference
 * https://www.vagrantup.com/docs/provisioning/ansible_intro.html
-* https://mariadb.com/kb/en/mariadb-enterprise/mariadb-maxscale-22-automatic-failover-with-mariadb-monitor/ 
+* https://mariadb.com/kb/en/mariadb-enterprise/mariadb-maxscale-22-automatic-failover-with-mariadb-monitor/
