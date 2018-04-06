@@ -1,4 +1,5 @@
 watch -n 1 maxctrl list servers
 maxctrl list servers
 maxctrl call command mariadbmon failover MariaDB-Monitor
+maxctrl call command mariadbmon switchover MariaDB-Monitor server1 server2
 systemctl restart maxscale

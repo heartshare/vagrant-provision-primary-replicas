@@ -1,5 +1,9 @@
 [maxscale]
 threads=auto
+log_warning=1
+log_info=1
+log_notice=1
+log_debug=1
 
 [MariaDB-Monitor]
 type=monitor
