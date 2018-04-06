@@ -1,7 +1,8 @@
 127.0.0.1   localhost localhost.localdomain
 
-192.168.2.10  maxscale
+192.168.2.221  mxs1
+192.168.2.222  mxs2
 
-192.168.2.101  node101
-192.168.2.102  node102
-192.168.2.103  node103
+192.168.2.101  server101
+192.168.2.102  server102
+192.168.2.103  server103

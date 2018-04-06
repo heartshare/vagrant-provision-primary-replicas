@@ -9,19 +9,19 @@
   roles:
     - common
 
-- hosts: mxs
+- hosts: mxs1,mxs2
   become: yes
   user: vagrant
   roles:
     - maxscale
 
-- hosts: node101
+- hosts: server1
   become: yes
   user: vagrant
   roles:
     - master
 
-- hosts: node102,node103
+- hosts: server2,server3
   become: yes
   user: vagrant
   roles:

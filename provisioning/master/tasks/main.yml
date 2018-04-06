@@ -10,9 +10,6 @@
 - name: grant REPLICATION SLAVE to repl user on master
   mysql_user: name=repl host=% password=replpwd priv='*.*:REPLICATION CLIENT,REPLICATION SLAVE' state=present
 
-# - name: grant REPLICATION CLIENT to repl user on master
-#   mysql_user: name=repl host=% password=replpwd priv="*.*:REPLICATION CLIENT" state=present
-
 - name: create maxuser(super) user
   mysql_user: name=maxuser host=% password=maxpwd priv=*.*:ALL state=present
 

@@ -8,13 +8,15 @@ Vagrant.configure(2) do |config|
     v.vmx['numvcpus'] = 1
   end
 
-  config.vm.define "mxs" do |node|
-    node.vm.hostname = "mxs"
-    node.vm.network :private_network, ip:"192.168.2.10"
+  1.upto(2) do |i|
+    config.vm.define "mxs#{i}" do |node|
+      node.vm.hostname = "mxs#{i}"
+      node.vm.network :private_network, ip:"192.168.2.22#{i}"
+    end
   end
   1.upto(3) do |i|
-    config.vm.define "node10#{i}" do |node|
-      node.vm.hostname = "node10#{i}"
+    config.vm.define "server#{i}" do |node|
+      node.vm.hostname = "server#{i}"
       node.vm.network :private_network, ip:"192.168.2.10#{i}"
     end
   end
