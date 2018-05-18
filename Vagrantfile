@@ -2,9 +2,9 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "centos/7"
+  config.vm.box = 'centos/7'
   config.vm.provider :vmware_workstation do |v|
-    v.vmx['memsize'] = "1024"
+    v.vmx['memsize'] = '1024'
     v.vmx['numvcpus'] = 1
   end
 
@@ -20,7 +20,7 @@ Vagrant.configure(2) do |config|
       node.vm.network :private_network, ip:"192.168.2.10#{i}"
     end
   end
-  config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "provisioning/provision-replica.yml"
+  config.vm.provision 'ansible_local' do |ansible|
+    ansible.playbook = 'provisioning/provision-replica.yml'
   end
 end
