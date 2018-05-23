@@ -2,7 +2,7 @@
 [mysqld]
 server-id        = {{ server_id }}
 log-bin          = mariadb-bin
-binlog-format    = ROW
+binlog-format    = row
 gtid_strict_mode = 1
 bind-address     = 0.0.0.0
 log_error
