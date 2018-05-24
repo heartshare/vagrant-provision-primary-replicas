@@ -13,6 +13,7 @@ user=maxuser
 password=maxpwd
 auto_failover=true
 auto_rejoin=true
+#enforce_read_only_slaves=true
 
 [Splitter-Service]
 type=service
