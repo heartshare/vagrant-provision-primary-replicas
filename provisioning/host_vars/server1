@@ -1,4 +1,4 @@
 is_db_node: true
 server_id: 101
 is_master: true
-mdb_version: 10.2.15
+mdb_version: 10.3.8

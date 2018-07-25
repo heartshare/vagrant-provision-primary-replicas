@@ -1,4 +1,4 @@
-# Provisioning MariaDB Master-Slave replication + MaxScale 2.2 HA / CentOS 7 with Vagrant / Ansible
+# Provisioning MariaDB 10.3 Master-Slave replication + MaxScale 2.2 HA / CentOS 7 with Vagrant / Ansible
 
 ## Requirements
 
@@ -6,7 +6,7 @@
 * [VMware Workstation 12 Pro](https://www.vmware.com/products/workstation.html)
 * [Ansible](https://www.ansible.com/)
 
-## create VM and provision MariaDB 10.2 Server on CentOS 7
+## create VM and provision MariaDB 10.3 Server on CentOS 7
 
 * vagrant up
 
