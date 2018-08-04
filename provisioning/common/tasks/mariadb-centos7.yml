@@ -1,15 +1,15 @@
 - name: remove MariaDB 5.5 libs
   yum: name="mariadb-libs" state=absent
 
-- name: install MariaDB 10.3 repository
+- name: install MariaDB {{ mdb_version }} repository
   yum_repository:
     name:        mariadb
     description: MariaDB
-    baseurl:     http://yum.mariadb.org/10.3/centos7-amd64
-    gpgkey:      https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+    baseurl:     https://downloads.mariadb.com/MariaDB/mariadb-10.3/yum/rhel/$releasever/$basearch
+    gpgkey:      https://downloads.mariadb.com/MariaDB/RPM-GPG-KEY-MariaDB
     gpgcheck:    1
 
-- name: MariaDB 10.3 RPM tar ball exists ?
+- name: MariaDB {{ mdb_version }} RPM tar ball exists ?
   stat: path=/vagrant/mariadb-{{ mdb_version }}-rhel-7-x86_64-rpms.tar
   register: rpmtar
 

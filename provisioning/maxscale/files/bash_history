@@ -1,7 +1,9 @@
 watch -n 1 maxctrl list servers
 maxctrl list servers
+maxctrl list services
 maxctrl call command mariadbmon failover MariaDB-Monitor
 maxctrl call command mariadbmon switchover MariaDB-Monitor server1 server2
 systemctl restart maxscale
 systemctl restart lsyncd
-cd /var/lib/MaxScale
+cd /var/lib/maxscale
+tail -f /var/log/maxscale/maxscale.log

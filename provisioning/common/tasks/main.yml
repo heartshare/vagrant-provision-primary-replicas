@@ -31,14 +31,6 @@
 - name: add alias
   shell: echo "alias lr='ls -lahtr'" >> /root/.bashrc
 
-# - name: generate SSH keys
-#   shell: ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
-#   args:
-#     creates: /root/.ssh/id_rsa
-
-# - name: touch ~/.ssh/authorized_keys
-#   shell: touch ~/.ssh/authorized_keys; chmod 600 ~/.ssh/authorized_keys
-
 - name: sshd_config PermitRootLogin yes
   lineinfile:
     dest:     /etc/ssh/sshd_config

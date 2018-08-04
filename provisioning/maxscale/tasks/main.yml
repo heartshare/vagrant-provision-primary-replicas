@@ -1,9 +1,9 @@
-- name: install MaxScale latest repository
+- name: set up latest MaxScale repository
   yum_repository:
-    name:        maxscale
-    description: MaxScale
-    baseurl:     https://downloads.mariadb.com/MaxScale/2.2/rhel/$releasever/$basearch
-    gpgkey:      file:///etc/pki/rpm-gpg/MariaDB-MaxScale-GPG-KEY
+    name:        mariadb-maxscale
+    description: MariaDB MaxScale
+    baseurl:     https://downloads.mariadb.com/MaxScale/latest/centos/$releasever/$basearch
+    gpgkey:      https://downloads.mariadb.com/MaxScale/MariaDB-MaxScale-GPG-KEY
     gpgcheck:    1
 
 - name: copy MaxScale configuration
@@ -12,14 +12,14 @@
 - name: copy ~/.bash_history
   copy: src=bash_history dest=/root/.bash_history
 
-- name: MaxScale 2.2 rpm exists ?
-  stat: path=/vagrant/maxscale-{{ version }}-1.rhel.7.x86_64.rpm
+- name: MaxScale {{ mxs_version }} rpm exists ?
+  stat: path=/vagrant/maxscale-{{ mxs_version }}-1.rhel.7.x86_64.rpm
   register: maxscalerpm
 
 - name: copy RPM and install
   shell: |
-    cp /vagrant/maxscale-{{ version }}-*.rpm .
-    yum -y localinstall maxscale-{{ version }}-*.rpm
+    cp /vagrant/maxscale-{{ mxs_version }}-*.rpm .
+    yum -y localinstall maxscale-{{ mxs_version }}-*.rpm
   args:
     chdir: /root
   when: maxscalerpm.stat.exists
@@ -28,11 +28,11 @@
   yum:  name=maxscale state=latest
   when: not maxscalerpm.stat.exists
 
-- name: add maxscale group
-  group: name=maxscale state=present
-
-- name: add maxscale user
-  user: name=maxscale group=maxscale shell=/sbin/nologin
+# - name: add maxscale group
+#   group: name=maxscale state=present
+#
+# - name: add maxscale user
+#   user: name=maxscale group=maxscale shell=/sbin/nologin
 
 - name: enable/start MaxScale
   systemd: name=maxscale state=started enabled=True
