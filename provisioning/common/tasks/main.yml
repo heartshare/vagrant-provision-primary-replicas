@@ -1,7 +1,6 @@
-- name: set timezone {{ zone }}
-  shell: timedatectl set-timezone {{ zone }}
-  register: set_timezone
-  changed_when: false
+- name: set timezone to {{ zone }}
+  timezone:
+    name: "{{ zone }}"
 
 - name: set locale {{ keymap }}
   shell: localectl set-keymap {{ keymap }}
