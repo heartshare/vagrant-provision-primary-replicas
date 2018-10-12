@@ -1,8 +1,8 @@
 # slave
 [mysqld]
 server-id        = {{ server_id }}
-log-bin          = mariadb-bin
-binlog-format    = ROW
+log_bin          = mariadb-bin
+binlog_format    = ROW
 gtid_strict_mode = 1
 bind-address     = 0.0.0.0
 log_error

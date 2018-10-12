@@ -1,5 +1,5 @@
 is_db_node: true
-server_id: 103
-is_master: false
+server_id:  103
+is_master:  false
 master_initial: 192.168.2.101
-mdb_version: 10.3.9
+mdb_version: 10.3.10
