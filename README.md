@@ -3,7 +3,7 @@
 ## Requirements
 
 * [Vagrant](https://www.vagrantup.com/downloads.html)
-* [VMware Workstation 12 Pro](https://www.vmware.com/products/workstation.html)
+* [VMware Workstation Pro](https://www.vmware.com/products/workstation.html)
 * [Ansible](https://www.ansible.com/)
 
 ## create VM and provision MariaDB 10.3 Server on CentOS 7
