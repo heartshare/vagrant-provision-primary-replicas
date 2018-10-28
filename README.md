@@ -1,4 +1,4 @@
-# Provisioning MariaDB 10.3 Master-Slave replication + MaxScale 2.2 HA / CentOS 7 with Vagrant / Ansible
+# Provisioning MariaDB 10.3 Master-Slave replication + MaxScale 2.3 HA / CentOS 7 with Vagrant / Ansible
 
 ## Requirements
 
