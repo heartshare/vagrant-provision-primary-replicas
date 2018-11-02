@@ -2,51 +2,24 @@
     "rules": [
         {
             "replace": {
-                "column": "a"
+                "column": "card_number1"
             },
             "with": {
-                "fill": "Y"
+                "fill": "************"
             }
         },
         {
             "replace": {
-                "column": "b"
+                "column": "card_number2",
+                "match": "^\\d{12}"
             },
             "with": {
-                "value": "012345-ABCD"
-            }
-        },
-        {
-            "replace": {
-                "column": "c"
-            },
-            "with": {
-                "value": "012345-ABCD",
-                "fill": "Y"
+                "fill": "*"
             }
         },
         {
             "obfuscate": {
-                "column": "d"
-            }
-        },
-        {
-            "replace": {
-                "column": "f",
-                "match": "(?<=aaa).*(?=-12)|(?<=-12).*"
-            },
-            "with": {
-                "value": "01234-BCD",
-                "fill": "X#@"
-            }
-        },
-        {
-            "replace": {
-                "table": "masking_mxs1733",
-                "column": "email"
-            },
-            "with": {
-                "fill": "*"
+                 "column": "card_number3"
             }
         }
     ]
