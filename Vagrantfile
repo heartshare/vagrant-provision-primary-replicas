@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
   1.upto(2) do |i|
     config.vm.define "mxs#{i}" do |node|
       node.vm.hostname = "mxs#{i}"
-      node.vm.network :private_network, ip:"192.168.2.22#{i}"
+      node.vm.network :private_network, ip:"192.168.2.23#{i}"
     end
   end
   1.upto(3) do |i|

@@ -13,9 +13,6 @@
 - name: create maxuser(super) user
   mysql_user: name=maxuser host=% password=maxpwd priv=*.*:ALL state=present
 
-- name: create maxadmin user
-  mysql_user: name=maxadmin host=% password=maxpwd priv='*.*:SELECT,SHOW DATABASES' state=present
-
 - name: copy .bash_history
   copy: src=bash_history dest=/root/.bash_history
 

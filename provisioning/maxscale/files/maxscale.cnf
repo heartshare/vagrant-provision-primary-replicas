@@ -15,20 +15,28 @@ auto_failover=true
 auto_rejoin=true
 #enforce_read_only_slaves=true
 
+[Masking]
+type=filter
+module=masking
+rules=/etc/maxscale.modules.d/masking_rules.json
+warn_type_mismatch=always
+large_payload=ignore
+
 [Splitter-Service]
 type=service
 router=readwritesplit
 servers=server1,server2,server3
-user=maxadmin
+user=maxuser
 password=maxpwd
 max_slave_connections=100%
 slave_selection_criteria=LEAST_CURRENT_OPERATIONS
+filters=Masking
 
 [Splitter-Listener]
 type=listener
 service=Splitter-Service
 protocol=mariadbclient
-port=4006
+port=3306
 #-----------------------
 [server1]
 type=server
