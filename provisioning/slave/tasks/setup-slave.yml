@@ -13,6 +13,9 @@
 - name: set global GTID position
   command: mysql -e "set global gtid_slave_pos = '{{ current_pos.stdout_lines[1] }}';"
 
+- name: stop slave
+  mysql_replication: mode=stopslave
+
 - name: change master
   command: mysql -e "CHANGE MASTER TO MASTER_HOST='{{ master_initial }}',MASTER_USE_GTID=slave_pos,MASTER_USER='repl',MASTER_PASSWORD='replpwd';"
 

@@ -26,3 +26,9 @@
   user: vagrant
   roles:
     - slave
+
+- hosts: server1
+  become: yes
+  user: vagrant
+  roles:
+    - populate

@@ -18,9 +18,3 @@
 
 - name: copy .mysql_history
   copy: src=mysql_history dest=/root/.mysql_history
-
-- name: copy masking-sample.sql
-  copy: src=masking-sample.sql dest=/root/masking-sample.sql
-
-- name: populate masking filter test table
-  shell: mysql test < /root/masking-sample.sql
