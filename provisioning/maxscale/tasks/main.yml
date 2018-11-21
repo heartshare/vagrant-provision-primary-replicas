@@ -2,7 +2,7 @@
   yum_repository:
     name:        mariadb-maxscale
     description: MariaDB MaxScale
-    baseurl:     https://downloads.mariadb.com/MaxScale/latest/centos/$releasever/$basearch
+    baseurl:     https://downloads.mariadb.com/MaxScale/2.3/centos/$releasever/$basearch
     gpgkey:      https://downloads.mariadb.com/MaxScale/MariaDB-MaxScale-GPG-KEY
     gpgcheck:    1
 
@@ -11,6 +11,9 @@
 
 - name: copy ~/.bash_history
   copy: src=bash_history dest=/root/.bash_history
+
+- name: copy ~/.mysql_history
+  copy: src=mysql_history dest=/root/.mysql_history
 
 - name: MaxScale {{ mxs_version }} rpm exists ?
   stat: path=/vagrant/maxscale-{{ mxs_version }}-1.rhel.7.x86_64.rpm
@@ -34,17 +37,20 @@
 # - name: add maxscale user
 #   user: name=maxscale group=maxscale shell=/sbin/nologin
 
+- name: copy masking_rules.json
+  copy: src=masking_rules.json dest=/etc/maxscale.modules.d/masking_rules.json
+
 - name: enable/start MaxScale
   systemd: name=maxscale state=started enabled=True
 
-- name: install lsyncd
-  yum:  name=lsyncd state=latest
-
-- name: copy lsyncd configuration
-  template: src=lsyncd.conf dest=/etc/lsyncd.conf
-
-- name: enable/start lsyncd
-  systemd: name=lsyncd state=started enabled=True
-
-- name: enable/start rsyncd
-  systemd: name=rsyncd state=started enabled=True
+# - name: install lsyncd
+#   yum:  name=lsyncd state=latest
+#
+# - name: copy lsyncd configuration
+#   template: src=lsyncd.conf dest=/etc/lsyncd.conf
+#
+# - name: enable/start lsyncd
+#   systemd: name=lsyncd state=started enabled=True
+#
+# - name: enable/start rsyncd
+#   systemd: name=rsyncd state=started enabled=True

@@ -1,0 +1,26 @@
+{
+    "rules": [
+        {
+            "replace": {
+                "column": "card_number1"
+            },
+            "with": {
+                "fill": "************"
+            }
+        },
+        {
+            "replace": {
+                "column": "card_number2",
+                "match": "^\\d{12}"
+            },
+            "with": {
+                "fill": "*"
+            }
+        },
+        {
+            "obfuscate": {
+                 "column": "card_number3"
+            }
+        }
+    ]
+}

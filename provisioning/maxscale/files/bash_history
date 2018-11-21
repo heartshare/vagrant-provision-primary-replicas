@@ -7,3 +7,4 @@ systemctl restart maxscale
 systemctl restart lsyncd
 cd /var/lib/maxscale
 tail -f /var/log/maxscale/maxscale.log
+mysql -h127.0.0.1 -umaxuser -pmaxpwd test
