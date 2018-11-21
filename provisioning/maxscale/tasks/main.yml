@@ -16,7 +16,7 @@
   copy: src=mysql_history dest=/root/.mysql_history
 
 - name: MaxScale {{ mxs_version }} rpm exists ?
-  stat: path=/vagrant/maxscale-{{ mxs_version }}-1.rhel.7.x86_64.rpm
+  stat: path=/vagrant/maxscale-{{ mxs_version }}-1.centos.7.x86_64.rpm
   register: maxscalerpm
 
 - name: copy RPM and install

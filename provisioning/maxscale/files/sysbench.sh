@@ -19,6 +19,6 @@ else
 fi
 
 sysbench --db-driver=mysql --mysql-host=$host --mysql-port=$port \
-  --mysql-user=maxuser --mysql-password=maxpwd --mysql-db=test \
+  --mysql-user=maxuser --mysql-password=maxp@ssword2018 --mysql-db=test \
   --range_size=100 --table_size=$size --tables=2 --events=0 \
   --time=60 --rand-type=uniform --db-ps-mode=disable --threads=$nthreads $lua $1
