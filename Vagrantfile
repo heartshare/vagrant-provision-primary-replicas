@@ -3,12 +3,17 @@
 
 Vagrant.configure(2) do |config|
   config.vm.box = 'centos/7'
+#  config.vm.provider "virtualbox" do |vb|
+#    vb.memory = 1024
+#    vb.cpus = 1
+#    vb.name = "Awesome Box"
+#  end
   config.vm.provider :vmware_workstation do |v|
     v.vmx['memsize'] = '1024'
     v.vmx['numvcpus'] = 1
   end
 
-  1.upto(2) do |i|
+  1.upto(1) do |i|
     config.vm.define "mxs#{i}" do |node|
       node.vm.hostname = "mxs#{i}"
       node.vm.network :private_network, ip:"192.168.2.22#{i}"
