@@ -1,3 +1,3 @@
-GRANT ALL ON *.* TO maxuser@'%' IDENTIFIED BY 'maxp@ssword2018';
-GRANT REPLICATION SLAVE on *.* to 'repl'@'%' identified by 'replp@ssword2018';
+GRANT ALL               ON *.* TO maxuser@'%' IDENTIFIED BY 'maxpwd';
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%'  IDENTIFIED BY 'replpwd';
 FLUSH PRIVILEGES;
