@@ -28,9 +28,11 @@ router=readwritesplit
 servers=server1,server2,server3
 user=maxuser
 password=maxpwd
-max_slave_connections=100%
-slave_selection_criteria=LEAST_CURRENT_OPERATIONS
-filters=Masking
+#filters=Masking
+# 2.3
+master_failure_mode=error_on_write
+master_reconnection=true
+transaction_replay=true
 
 [Splitter-Listener]
 type=listener
