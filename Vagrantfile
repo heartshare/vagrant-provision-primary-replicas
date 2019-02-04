@@ -19,7 +19,7 @@ Vagrant.configure(2) do |config|
       node.vm.network :private_network, ip:"192.168.2.23#{i}"
     end
   end
-  1.upto(2) do |i|
+  1.upto(3) do |i|
     config.vm.define "server#{i}" do |node|
       node.vm.hostname = "server#{i}"
       node.vm.network :private_network, ip:"192.168.2.10#{i}"
