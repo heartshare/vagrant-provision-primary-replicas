@@ -1,0 +1,70 @@
+- name: set timezone {{ zone }}
+  shell: timedatectl set-timezone {{ zone }}
+  register: set_timezone
+  changed_when: false
+
+- name: set locale {{ keymap }}
+  shell: localectl set-keymap {{ keymap }}
+  register: set_locale
+  changed_when: false
+
+- name: install wget/git/libselinux-python
+  yum: name={{ item }} state=latest
+  with_items:
+    - wget
+    - git
+    - libselinux-python
+    - epel-release
+
+- name: disable SELinux
+  selinux: state=disabled
+
+- name: remove firewalld
+  yum: name=firewalld state=absent
+
+- name: sysctl.conf vm.swappiness 1
+  sysctl: name="vm.swappiness" value=1 state=present
+
+- name: sysctl.conf disable ipv6
+  sysctl: name="net.ipv6.conf.all.disable_ipv6" value=1
+
+- name: add alias
+  shell: echo "alias lr='ls -lahtr'" >> /root/.bashrc
+
+- name: generate SSH keys
+  shell: ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+  args:
+    creates: /root/.ssh/id_rsa
+
+- name: touch ~/.ssh/authorized_keys
+  shell: touch ~/.ssh/authorized_keys; chmod 600 ~/.ssh/authorized_keys
+
+- name: sshd_config PermitRootLogin yes
+  lineinfile:
+    dest:     /etc/ssh/sshd_config
+    state:    present
+    backrefs: yes
+    regexp:   '^#PermitRootLogin yes'
+    line:     'PermitRootLogin yes'
+
+- name: sshd_config PasswordAuthentication yes
+  lineinfile:
+    dest:     /etc/ssh/sshd_config
+    state:    present
+    backrefs: yes
+    regexp:   '^#PasswordAuthentication yes'
+    line:     'PasswordAuthentication yes'
+
+- name: sshd_config delete PasswordAuthentication no
+  lineinfile:
+    dest:     /etc/ssh/sshd_config
+    state:    present
+    backrefs: yes
+    regexp:   '^PasswordAuthentication no'
+    line:     ''
+
+- name: restart sshd
+  systemd: name=sshd state=restarted
+
+- name: copy /etc/hosts
+  copy: src=hosts dest=/etc/hosts

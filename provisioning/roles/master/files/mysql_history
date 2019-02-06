@@ -1,0 +1,9 @@
+SHOW VARIABLES LIKE 'server_id';
+mysqldump --all-databases --master-data=2 --single-transaction --routines > /tmp/dump.sql
+select @@global.gtid_current_pos;
+select @@global.gtid_strict_mode;
+show master status;
+use test;
+create table repl1 (id int primary key);
+select * from repl1;
+insert into repl1 value(1);

@@ -1,0 +1,25 @@
+- include: mariadb-centos7.yml
+
+- name: copy configuration for master
+  copy: src=server.cnf dest=/etc/my.cnf.d/
+
+- name: enable/start MariaDB Server(Master)
+  systemd: name=mariadb state=started enabled=True
+
+- name: install MYSQL-python
+  yum: name=MySQL-python state=present
+
+- name: create replication user on master
+  mysql_user: name=repl host=% password=replpwd priv="*.*:REPLICATION SLAVE" state=present
+
+- name: create maxuser(super) user
+  mysql_user: name=maxuser host=% password=maxpwd priv=*.*:ALL state=present
+
+- name: create maxadmin user
+  mysql_user: name=maxadmin host=% password=maxpwd priv="*.*:SELECT,SHOW DATABASES" state=present
+
+- name: copy .bash_history
+  copy: src=bash_history dest=/root/.bash_history
+
+- name: copy .mysql_history
+  copy: src=mysql_history dest=/root/.mysql_history

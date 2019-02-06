@@ -1,0 +1,13 @@
+stop slave;
+reset slave;
+set global gtid_slave_pos = "0-1-6";
+CHANGE MASTER TO
+  MASTER_HOST     = '192.168.18.20',
+  MASTER_USER     = 'repl',
+  MASTER_PASSWORD = 'replpwd',
+  MASTER_USE_GTID = slave_pos;
+START SLAVE;
+SHOW SLAVE STATUS \G
+use test;
+show tables;
+select * from repl1;

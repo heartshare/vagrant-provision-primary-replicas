@@ -1,0 +1,8 @@
+cd /etc/my.cnf.d/
+vi /etc/my.cnf.d/server.cnf
+systemctl status mariadb
+systemctl stop mariadb
+systemctl start mariadb
+systemctl restart mariadb
+pushd /var/lib/mysql/
+tail -f /var/log/messages
