@@ -6,15 +6,6 @@
     gpgkey:      https://downloads.mariadb.com/MaxScale/MariaDB-MaxScale-GPG-KEY
     gpgcheck:    1
 
-- name: copy MaxScale configuration
-  copy: src=maxscale.cnf dest=/etc/maxscale.cnf
-
-- name: copy ~/.bash_history
-  copy: src=bash_history dest=/root/.bash_history
-
-- name: copy ~/.mysql_history
-  copy: src=mysql_history dest=/root/.mysql_history
-
 - name: MaxScale {{ mxs_version }} rpm exists ?
   stat: path=/vagrant/maxscale-{{ mxs_version }}-1.centos.7.x86_64.rpm
   register: maxscalerpm
@@ -36,12 +27,20 @@
 #
 # - name: add maxscale user
 #   user: name=maxscale group=maxscale shell=/sbin/nologin
+- name: copy MaxScale configuration
+  copy: src=maxscale.cnf dest=/etc/maxscale.cnf
 
 - name: copy masking_rules.json
   copy: src=masking_rules.json dest=/etc/maxscale.modules.d/masking_rules.json
 
 - name: enable/start MaxScale
   systemd: name=maxscale state=started enabled=True
+
+- name: copy ~/.bash_history
+  copy: src=bash_history dest=/root/.bash_history
+
+- name: copy ~/.mysql_history
+  copy: src=mysql_history dest=/root/.mysql_history
 
 # - name: install lsyncd
 #   yum:  name=lsyncd state=latest

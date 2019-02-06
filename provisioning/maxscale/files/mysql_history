@@ -1,3 +1,6 @@
 select * from test.t1;
 select * from test.t2;
 select * from test.t3;
+select * from test.masking1;
+select * from test.masking2;
+select * from test.masking3;
