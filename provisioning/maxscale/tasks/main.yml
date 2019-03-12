@@ -22,13 +22,8 @@
   yum:  name=maxscale state=latest
   when: not maxscalerpm.stat.exists
 
-# - name: add maxscale group
-#   group: name=maxscale state=present
-#
-# - name: add maxscale user
-#   user: name=maxscale group=maxscale shell=/sbin/nologin
-- name: copy MaxScale configuration
-  copy: src=maxscale.cnf dest=/etc/maxscale.cnf
+- name: copy maxscale.conf
+  template: src=maxscale.cnf dest=/etc/maxscale.cnf
 
 - name: copy masking_rules.json
   copy: src=masking_rules.json dest=/etc/maxscale.modules.d/masking_rules.json
@@ -42,14 +37,12 @@
 - name: copy ~/.mysql_history
   copy: src=mysql_history dest=/root/.mysql_history
 
-# - name: install lsyncd
-#   yum:  name=lsyncd state=latest
-#
-# - name: copy lsyncd configuration
-#   template: src=lsyncd.conf dest=/etc/lsyncd.conf
-#
-# - name: enable/start lsyncd
-#   systemd: name=lsyncd state=started enabled=True
-#
-# - name: enable/start rsyncd
-#   systemd: name=rsyncd state=started enabled=True
+
+- name: install keepalived
+  yum:  name=keepalived state=latest
+
+- name: copy keepalived.conf
+  template: src=keepalived.conf dest=/etc/keepalived/keepalived.conf
+
+- name: copy is_maxscale_running.sh
+  copy: src=is_maxscale_running.sh dest=/home/vagrant/is_maxscale_running.sh mode=0755

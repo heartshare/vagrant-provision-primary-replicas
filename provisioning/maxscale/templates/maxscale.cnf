@@ -25,10 +25,10 @@ auto_rejoin=true
 [Splitter-Service]
 type=service
 router=readwritesplit
+version_string={{ version_string }}
 servers=server1,server2,server3
 user=maxuser
 password=maxpwd
-version_string=
 #filters=Masking
 # 2.3
 master_failure_mode=error_on_write
