@@ -46,3 +46,7 @@
 
 - name: copy is_maxscale_running.sh
   copy: src=is_maxscale_running.sh dest=/home/vagrant/is_maxscale_running.sh mode=0755
+
+- name: enable/start Keepalived
+  systemd: name=keepalived state=started enabled=True
+
