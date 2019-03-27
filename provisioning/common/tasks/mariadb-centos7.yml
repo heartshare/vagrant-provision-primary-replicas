@@ -27,4 +27,3 @@
 
 - name: install MariaDB Server from repository
   yum: name=MariaDB-server state=latest update_cache=yes
-  when: not rpmtar.stat.exists
