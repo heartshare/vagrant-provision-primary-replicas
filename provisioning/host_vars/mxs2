@@ -1,6 +1,6 @@
 mxs_version: 2.3.8
 is_db_node:  false
-is_master:   false
+is_primary:  false
 ip_maxscale: 192.168.2.231
 version_string: SecondaryMXS
 priority:       100

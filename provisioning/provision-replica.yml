@@ -19,10 +19,10 @@
   become: yes
   user: vagrant
   roles:
-    - master
+    - primary
 
 - hosts: server2,server3
   become: yes
   user: vagrant
   roles:
-    - slave
+    - replica

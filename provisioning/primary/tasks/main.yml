@@ -1,13 +1,13 @@
-- name: copy configuration for master
-  template: src=master.cnf dest=/etc/my.cnf.d/server.cnf
+- name: copy configuration for primary
+  template: src=primary.cnf dest=/etc/my.cnf.d/server.cnf
 
-- name: enable/start MariaDB Server(Master)
+- name: enable/start MariaDB Server(primary)
   systemd: name=mariadb state=started enabled=True
 
 - name: install MYSQL-python
   yum: name=MySQL-python state=present
 
-- name: grant REPLICATION SLAVE to repl user on master
+- name: grant REPLICATION SLAVE to repl user on primary
   mysql_user: name=repl host=% password=replpwd priv='*.*:REPLICATION CLIENT,REPLICATION SLAVE' state=present
 
 - name: create maxuser(super) user

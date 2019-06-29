@@ -5,7 +5,7 @@
   mysql_replication: mode=resetslave
 
 - name: select @@global.gtid_current_pos
-  command: mysql -h {{ master_initial }} -u repl --password=replpwd -e "select @@global.gtid_current_pos;"
+  command: mysql -h {{ primary_initial }} -u repl --password=replpwd -e "select @@global.gtid_current_pos;"
   register: current_pos
 
 - debug: var=current_pos.stdout_lines[1]
@@ -17,7 +17,7 @@
   mysql_replication: mode=stopslave
 
 - name: change master
-  command: mysql -e "CHANGE MASTER TO MASTER_HOST='{{ master_initial }}',MASTER_USE_GTID=slave_pos,MASTER_USER='repl',MASTER_PASSWORD='replpwd';"
+  command: mysql -e "CHANGE MASTER TO MASTER_HOST='{{ primary_initial }}',MASTER_USE_GTID=slave_pos,MASTER_USER='repl',MASTER_PASSWORD='replpwd';"
 
 - name: start slave
   mysql_replication: mode=startslave

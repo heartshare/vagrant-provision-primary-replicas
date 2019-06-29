@@ -6,7 +6,7 @@
 * [VMware Workstation Pro](https://www.vmware.com/products/workstation.html)
 * [Ansible](https://www.ansible.com/)
 
-## create VM and provision MariaDB 10.3 Server on CentOS 7
+## create VM and provision MariaDB 10.4 Server on CentOS 7
 
 * vagrant up
 
