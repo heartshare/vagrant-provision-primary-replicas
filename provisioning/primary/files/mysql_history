@@ -1,11 +1,11 @@
 SHOW VARIABLES LIKE 'server_id';
-select @@global.gtid_current_pos;
-select @@global.gtid_slave_pos;
-select @@global.gtid_strict_mode;
+SELECT @@global.gtid_current_pos;
+SELECT @@global.gtid_slave_pos;
+SELECT @@global.gtid_strict_mode;
 SHOW MASTER STATUS;
 use test;
 create table t1 (id int primary key);
-select * from test.t1;
-insert into repl1 value(1);
-select user, host, password from mysql.user;
+SELECT * FROM test.t1;
+INSERT INTO t1 VALUE(1);
+SELECT user, host, password from mysql.user;
 SELECT CONCAT(user, '@', host, ' => ', JSON_DETAILED(priv)) FROM mysql.global_priv;
