@@ -1,4 +1,4 @@
-# Provisioning MariaDB primary-replica replication + MaxScale / CentOS 7 with Vagrant / Ansible
+# Provisioning MariaDB primary-replicas + MaxScale / CentOS 7 with Vagrant / Ansible
 
 ## Requirements
 
