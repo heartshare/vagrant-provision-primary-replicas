@@ -8,12 +8,13 @@
   changed_when: False
 
 - name: install wget/git/libselinux-python/epel
-  yum: name={{ item }} state=latest
-  with_items:
-    - wget
-    - git
-    - libselinux-python
-    - epel-release
+  yum:
+    name:
+      - wget
+      - git
+      - libselinux-python
+      - epel-release
+    state: latest
 
 - name: disable SELinux
   selinux: state=disabled

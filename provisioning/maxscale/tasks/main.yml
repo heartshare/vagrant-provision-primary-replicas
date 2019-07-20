@@ -34,9 +34,16 @@
 - name: copy ~/.bash_history
   copy: src=bash_history dest=/root/.bash_history
 
+- name: copy ~vagrant/.bash_history
+  copy:
+    src:   bash_history
+    dest:  /home/vagrant/.bash_history
+    owner: vagrant
+    group: vagrant
+    mode:  644
+
 - name: copy ~/.mysql_history
   copy: src=mysql_history dest=/root/.mysql_history
-
 
 - name: install keepalived
   yum:  name=keepalived state=latest
@@ -49,4 +56,3 @@
 
 - name: enable/start Keepalived
   systemd: name=keepalived state=started enabled=True
-

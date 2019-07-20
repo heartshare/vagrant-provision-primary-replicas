@@ -13,16 +13,23 @@
   stat: path=/vagrant/mariadb-{{ mdb_version }}-rhel-7-x86_64-rpms.tar
   register: rpmtar
 
+- name: rpmtar
+  debug:
+    msg: rpmtar {{ rpmtar.stat.exists }}
+
+- name: unarchive RPM tarball
+  unarchive:
+    src:  /vagrant/mariadb-{{ mdb_version }}-rhel-7-x86_64-rpms.tar
+    dest: /root
+
 - name: extract RPM tar ball and install
   shell: |
-    tar xf /vagrant/mariadb-{{ mdb_version }}-rhel-7-x86_64-rpms.tar
-    cd /root/mariadb-{{ mdb_version }}-rhel-7-x86_64-rpms
     yum -y localinstall MariaDB-server-{{ mdb_version }}-*.rpm \
                         MariaDB-client-{{ mdb_version }}-*.rpm \
                         MariaDB-common-{{ mdb_version }}-*.rpm \
                         MariaDB-compat-{{ mdb_version }}-*.rpm
   args:
-    chdir: /root
+    chdir: /root/mariadb-{{ mdb_version }}-rhel-7-x86_64-rpms
   when: rpmtar.stat.exists
 
 - name: install MariaDB Server from repository
