@@ -18,9 +18,9 @@ module=mariadbmon
 servers=server1,server2,server3
 user=maxuser
 password=maxpwd
-auto_failover=true
-auto_rejoin=true
-#enforce_read_only_slaves=true
+auto_failover=True
+auto_rejoin=True
+#enforce_read_only_slaves=True
 
 [Splitter-Service]
 type=service
@@ -32,9 +32,9 @@ password=maxpwd
 #filters=Masking
 # 2.3
 master_failure_mode=error_on_write
-master_reconnection=true
-transaction_replay=true
-causal_reads=true
+master_reconnection=True
+transaction_replay=True
+causal_reads=True
 
 [Splitter-Listener]
 type=listener

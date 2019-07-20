@@ -5,7 +5,7 @@
 - name: set locale {{ keymap }}
   shell: localectl set-keymap {{ keymap }}
   register: set_locale
-  changed_when: false
+  changed_when: False
 
 - name: install wget/git/libselinux-python/epel
   yum: name={{ item }} state=latest
@@ -61,4 +61,4 @@
   copy: src=hosts dest=/etc/hosts
 
 - import_tasks: mariadb-centos7.yml
-  when: is_db_node
+  when: is_db_node|bool

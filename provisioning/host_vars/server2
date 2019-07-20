@@ -1,5 +1,5 @@
-is_db_node:      true
+is_db_node:      True
 server_id:       102
-is_primary:      false
+is_primary:      False
 primary_initial: 192.168.2.101
 mdb_version:     10.4.6
