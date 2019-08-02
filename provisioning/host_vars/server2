@@ -1,4 +1,4 @@
-is_db_node:      True
-server_id:       102
+is_db_node:  True
+server_id:   102
+mdb_version: 10.4.7
 primary_initial: 192.168.2.101
-mdb_version:     10.4.6
