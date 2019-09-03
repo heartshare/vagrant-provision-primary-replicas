@@ -2,7 +2,7 @@
   yum_repository:
     name:        mariadb-maxscale
     description: MariaDB MaxScale
-    baseurl:     https://downloads.mariadb.com/MaxScale/2.3/centos/$releasever/$basearch
+    baseurl:     https://downloads.mariadb.com/MaxScale/2.4/centos/$releasever/$basearch
     gpgkey:      https://downloads.mariadb.com/MaxScale/MariaDB-MaxScale-GPG-KEY
     gpgcheck:    1
 

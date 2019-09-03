@@ -1,7 +1,7 @@
 [maxscale]
 threads=auto
 log_warning=1
-# log_info cause performance degrdation. 
+# log_info cause performance degrdation.
 #log_info=1
 #log_notice=1
 
@@ -30,7 +30,7 @@ servers=server1,server2,server3
 user=maxuser
 password=maxpwd
 #filters=Masking
-# 2.3
+# 2.3 and later
 master_failure_mode=error_on_write
 master_reconnection=True
 transaction_replay=True

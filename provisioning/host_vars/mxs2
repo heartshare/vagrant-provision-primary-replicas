@@ -1,4 +1,4 @@
-mxs_version: 2.3.9
+mxs_version: 2.4.2
 is_db_node:  False
 ip_maxscale: 192.168.2.231
 version_string: SecondaryMXS
