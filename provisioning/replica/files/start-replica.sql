@@ -1,6 +1,6 @@
 STOP SLAVE;
 RESET SLAVE;
-set global gtid_slave_pos = '0-101-6';
+set global gtid_slave_pos = '0-101-4';
 CHANGE MASTER TO master_host='192.168.2.101',
   master_user='repl',
   master_password='replpwd',
