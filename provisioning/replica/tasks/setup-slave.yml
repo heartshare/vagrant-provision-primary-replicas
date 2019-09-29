@@ -4,7 +4,7 @@
 - name: reset slave
   mysql_replication: mode=resetslave
 
-- name: select @@global.gtid_current_pos
+- name: select @@global.gtid_current_pos of Primary
   command: mysql -h {{ primary_initial }} -u repl --password=replpwd -e "select @@global.gtid_current_pos;"
   register: current_pos
 
