@@ -9,3 +9,11 @@ SELECT * FROM test.t1;
 INSERT INTO t1 VALUE(1);
 SELECT user, host, password from mysql.user;
 SELECT CONCAT(user, '@', host, ' => ', JSON_DETAILED(priv)) FROM mysql.global_priv;
+
+CREATE USER maxuser@'%' IDENTIFIED BY 'maxpwd';
+GRANT SELECT ON mysql.user TO maxuser@'%';
+GRANT SELECT ON mysql.db TO maxuser@'%';
+GRANT SELECT ON mysql.tables_priv TO maxuser@'%';
+GRANT SELECT ON mysql.roles_mapping TO maxuser@'%';
+GRANT SHOW DATABASES ON *.* TO maxuser@'%';
+GRANT REPLICATION CLIENT ON *.* TO maxuser@'%';
