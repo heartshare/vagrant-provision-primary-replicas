@@ -4,6 +4,7 @@
     locale: en_US.UTF-8
     keymap: jp106
     zone:   Asia/Tokyo
+    datadog_api_key: "77475f6f98e0ef4a01a86e925ccc4e1f"
   become: yes
   user: vagrant
   roles:
