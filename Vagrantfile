@@ -8,6 +8,9 @@ Vagrant.configure(2) do |config|
 #    vb.cpus = 1
 #    vb.name = "Awesome Box"
 #  end
+
+  #  config.vm.synced_folder ".", "/vagrant", type: "rsync", rsync__exclude: ".git/"
+
   config.vm.provider :vmware_workstation do |v|
     v.vmx['memsize'] = '1024'
     v.vmx['numvcpus'] = 1
