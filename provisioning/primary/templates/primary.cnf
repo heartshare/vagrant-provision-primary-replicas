@@ -1,4 +1,3 @@
-# master
 [mysqld]
 server-id        = {{ server_id }}
 log_bin          = mariadb-bin
