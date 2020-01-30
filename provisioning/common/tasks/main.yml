@@ -7,6 +7,9 @@
   register: set_locale
   changed_when: False
 
+- name: remove postfix
+  yum: name=postfix state=absent
+
 - name: install wget/git/libselinux-python/epel
   yum:
     name:

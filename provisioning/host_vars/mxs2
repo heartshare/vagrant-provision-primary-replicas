@@ -2,4 +2,5 @@ mxs_version: 2.4.6
 is_db_node:  False
 ip_maxscale: 192.168.2.241
 version_string: Sec-MXS
+passive:        True
 priority:       100

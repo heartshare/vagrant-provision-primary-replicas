@@ -6,21 +6,9 @@
     gpgkey:      https://downloads.mariadb.com/MaxScale/MariaDB-MaxScale-GPG-KEY
     gpgcheck:    1
 
-- name: MaxScale {{ mxs_version }} rpm exists ?
-  stat: path=/vagrant/maxscale-{{ mxs_version }}-1.centos.7.x86_64.rpm
-  register: maxscalerpm
-
-- name: copy RPM and install
-  shell: |
-    cp /vagrant/maxscale-{{ mxs_version }}-*.rpm .
-    yum -y localinstall maxscale-{{ mxs_version }}-*.rpm
-  args:
-    chdir: /root
-  when: maxscalerpm.stat.exists
-
 - name: install MaxScale from MariaDB repository
   yum:  name=maxscale state=latest
-  when: not maxscalerpm.stat.exists
+  # when: not maxscalerpm.stat.exists
 
 - name: copy maxscale.conf
   template: src=maxscale.cnf dest=/etc/maxscale.cnf
@@ -52,10 +40,15 @@
   template: src=keepalived.conf dest=/etc/keepalived/keepalived.conf
 
 - name: copy is_maxscale_running.sh
-  copy: src=is_maxscale_running.sh dest=/home/vagrant/is_maxscale_running.sh mode=0755
+  copy: src=is_maxscale_running.sh dest=/home/vagrant/is_maxscale_running.sh mode=0700
 
 - name: copy notify_script.sh
-  copy: src=notify_script.sh dest=/home/vagrant/notify_script.sh mode=0755
+  copy: src=notify_script.sh dest=/home/vagrant/notify_script.sh mode=0700
 
 - name: enable/start Keepalived
   systemd: name=keepalived state=started enabled=True
+
+- name: global parameter passive=true for Secondry maxscale
+  shell: /home/vagrant/notify_script.sh TYPE NAME BACKUP
+  when: passive|bool
+# https://mariadb.com/kb/en/mariadb-maxscale-24-mariadb-maxscale-configuration-guide/#passive
