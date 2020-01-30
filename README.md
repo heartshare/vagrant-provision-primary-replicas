@@ -20,7 +20,8 @@ MaxScale HA config w/ Keepalived
 
 * vagrant rsync
 
-## Reference
+## References
 * https://www.vagrantup.com/docs/provisioning/ansible_intro.html
 * https://mariadb.com/kb/en/mariadb-enterprise/mariadb-maxscale-24-automatic-failover-with-mariadb-monitor/
 * https://mariadb.com/resources/blog/mariadb-maxscale-masking-and-firewall/
+* https://mariadb.com/resources/blog/maxscale-ha-setup-using-keepalived-and-maxctrl/
