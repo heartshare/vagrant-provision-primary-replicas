@@ -1,4 +1,4 @@
-[mysqld]
+[mariadb]
 server-id        = {{ server_id }}
 log_bin          = mariadb-bin
 binlog_format    = row
