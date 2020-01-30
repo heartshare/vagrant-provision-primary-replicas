@@ -10,8 +10,15 @@
 - name: grant REPLICATION SLAVE, REPLICATION CLIENT to repl user
   mysql_user: name=repl host=% password=replpwd priv='*.*:REPLICATION CLIENT,REPLICATION SLAVE' state=present
 
-- name: create maxuser(super) user
-  mysql_user: name=maxuser host=% password=maxpwd priv=*.*:ALL state=present
+- name: create maxuser@'%' user
+  mysql_user:
+    name: maxuser
+    host: '%'
+    password: maxpwd
+    priv:  'mysql.user:SELECT/mysql.db:SELECT/mysql.tables_priv:SELECT/mysql.roles_mapping:SELECT/*.*:SHOW DATABASES,REPLICATION CLIENT'
+    state: present
+# https://mariadb.com/kb/en/mariadb-maxscale-24-setting-up-mariadb-maxscale/
+# https://mariadb.com/kb/en/mariadb-maxscale-24-mariadb-monitor/
 
 - name: copy .bash_history
   copy: src=bash_history dest=/root/.bash_history

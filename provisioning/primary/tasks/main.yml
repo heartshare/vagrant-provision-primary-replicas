@@ -7,7 +7,7 @@
 - name: install MYSQL-python
   yum: name=MySQL-python state=present
 
-- name: grant REPLICATION SLAVE to repl user on primary
+- name: grant REPLICATION SLAVE to 'repl' user on Primary
   mysql_user: name=repl host=% password=replpwd priv='*.*:REPLICATION CLIENT,REPLICATION SLAVE' state=present
 
 - name: create maxuser@'%' user
