@@ -25,8 +25,8 @@
 - name: copy maxscale.conf
   template: src=maxscale.cnf dest=/etc/maxscale.cnf
 
-- name: copy masking_rules.json
-  copy: src=masking_rules.json dest=/etc/maxscale.modules.d/masking_rules.json
+# - name: copy masking_rules.json
+#   copy: src=masking_rules.json dest=/etc/maxscale.modules.d/masking_rules.json
 
 - name: enable/start MaxScale
   systemd: name=maxscale state=started enabled=True
@@ -45,7 +45,7 @@
 - name: copy ~/.mysql_history
   copy: src=mysql_history dest=/root/.mysql_history
 
-- name: install keepalived
+- name: install Keepalived
   yum:  name=keepalived state=latest
 
 - name: copy keepalived.conf
@@ -53,6 +53,9 @@
 
 - name: copy is_maxscale_running.sh
   copy: src=is_maxscale_running.sh dest=/home/vagrant/is_maxscale_running.sh mode=0755
+
+- name: copy notify_script.sh
+  copy: src=notify_script.sh dest=/home/vagrant/notify_script.sh mode=0755
 
 - name: enable/start Keepalived
   systemd: name=keepalived state=started enabled=True

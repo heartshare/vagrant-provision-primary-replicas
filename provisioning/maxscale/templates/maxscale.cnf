@@ -1,23 +1,19 @@
 [maxscale]
 threads=auto
 log_warning=1
-# log_info cause performance degradation.
+# log_info cause performance degradation !!!
 #log_info=1
 #log_notice=1
-
-[Masking]
-type=filter
-module=masking
-rules=/etc/maxscale.modules.d/masking_rules.json
-warn_type_mismatch=always
-large_payload=ignore
 
 [MariaDB-Monitor]
 type=monitor
 module=mariadbmon
-servers=server1,server2,server3
+servers=server1,server2
 user=maxuser
 password=maxpwd
+replication_user=repl
+replication_password=replpwd
+#
 auto_failover=True
 auto_rejoin=True
 #enforce_read_only_slaves=True
@@ -26,7 +22,7 @@ auto_rejoin=True
 type=service
 router=readwritesplit
 version_string={{ version_string }}
-servers=server1,server2,server3
+servers=server1,server2
 user=maxuser
 password=maxpwd
 #filters=Masking
@@ -41,6 +37,13 @@ type=listener
 service=Splitter-Service
 protocol=mariadbclient
 port=3306
+
+#[Masking]
+#type=filter
+#module=masking
+#rules=/etc/maxscale.modules.d/masking_rules.json
+#warn_type_mismatch=always
+#large_payload=ignore
 #-----------------------
 [server1]
 type=server
@@ -54,8 +57,8 @@ address=192.168.2.102
 port=3306
 protocol=mariadbbackend
 
-[server3]
-type=server
-address=192.168.2.103
-port=3306
-protocol=mariadbbackend
+#[server3]
+#type=server
+#address=192.168.2.103
+#port=3306
+#protocol=mariadbbackend
