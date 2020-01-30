@@ -1,4 +1,6 @@
-# Provisioning MariaDB primary-replicas + MaxScale / CentOS 7 with Vagrant / Ansible
+# Provisioning MariaDB primary-replicas + 2 MaxScale / CentOS 7 with Vagrant / Ansible
+
+MaxScale HA config w/ Keepalived
 
 ## Requirements
 
@@ -12,7 +14,7 @@
 
 ## SSH login to the VM
 
-* vagrant ssh [mxs1|mxs2|server1|server2|server3]
+* vagrant ssh [mxs1|mxs2|server1|server2]
 
 ## rsync Vagrant files and folders between local and target hosts
 
