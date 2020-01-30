@@ -4,7 +4,11 @@ maxctrl list services
 maxctrl call command mariadbmon failover MariaDB-Monitor
 maxctrl call command mariadbmon switchover MariaDB-Monitor server1 server2
 systemctl restart maxscale
+systemctl stop maxscale
 cd /var/lib/maxscale
 tail -f /var/log/maxscale/maxscale.log
 mysql -h127.0.0.1 -umaxuser -pmaxpwd test
 systemctl restart keepalived
+maxctrl show maxscale | grep passive
+maxctrl alter maxscale passive true
+tail -f /var/log/messages

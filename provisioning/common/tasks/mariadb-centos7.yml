@@ -1,7 +1,7 @@
 - name: remove MariaDB 5.5 libs
   yum: name="mariadb-libs" state=absent
 
-- name: install MariaDB Server {{ mdb_version }} repository
+- name: setup MariaDB Server {{ mdb_version }} repository
   yum_repository:
     name:        mariadb
     description: MariaDB
