@@ -15,7 +15,7 @@
     name: maxuser
     host: '%'
     password: maxpwd
-    priv:  'mysql.user:SELECT/mysql.db:SELECT/mysql.tables_priv:SELECT/mysql.roles_mapping:SELECT/*.*:SHOW DATABASES,REPLICATION CLIENT,REPLICATION SLAVE,SUPER,RELOAD'
+    priv:  'mysql.user:SELECT/mysql.db:SELECT/mysql.tables_priv:SELECT/mysql.roles_mapping:SELECT/*.*:RELOAD,PROCESS,SHOW DATABASES,SUPER,REPLICATION CLIENT,EVENT'
     state: present
 # https://mariadb.com/kb/en/mariadb-maxscale-24-setting-up-mariadb-maxscale/
 # https://mariadb.com/kb/en/mariadb-maxscale-24-mariadb-monitor/
